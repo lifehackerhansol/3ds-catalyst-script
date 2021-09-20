@@ -1,0 +1,27 @@
+name: Make things
+
+on:
+  push:
+    branches: ["*"]
+    paths-ignore:
+      - 'README.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Package shit
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v1
+      - name: Do stuff
+        run: |
+            mkdir ~/artifacts
+            cp catalyst-ctr.sh ~/artifacts/catalyst-ctr.sh
+            cd ~/artifacts
+            chmod +x catalyst-ctr.sh
+            ./catalyst-ctr.sh
+      - name: Publish build to GH Actions
+        uses: actions/upload-artifact@v2
+        with:
+          path: ~/artifacts/out/*
+          name: build
