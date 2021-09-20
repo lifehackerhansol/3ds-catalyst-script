@@ -1,3 +1,4 @@
 # Scripts
 
-This is just a repo of scripts that I wanted to back up.
+3DS catalyst scripts stolen from 46620 because I suck at making my own
+
