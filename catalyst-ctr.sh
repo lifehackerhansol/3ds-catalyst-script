@@ -131,6 +131,14 @@ mv usm.zip ../out
 cd ..
 rm -rf usm
 
+###########
+# md5sums #
+###########
+for cum in out/*
+do
+    md5sum "$cum" > "$cum.md5"
+done
+
 
 ###########
 # Credits #
