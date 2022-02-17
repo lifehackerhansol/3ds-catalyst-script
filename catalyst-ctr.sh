@@ -32,7 +32,7 @@ echo "Downloading GodMode9"
 curl -sLq https://api.github.com/repos/d0k3/GodMode9/releases/latest | jq -r '.assets[].browser_download_url' | wget -qi -
 
 echo "Downloading DSP1"
-wget -q "https://github.com/zoogie/DSP1/releases/download/v1.0/DSP1.cia" # Not updated since 2017 so not gonna do an API call
+wget -q "https://github.com/zoogie/DSP1/releases/download/v1.0/DSP1.3dsx" # Not updated since 2017 so not gonna do an API call
 
 echo "Downloading ctr-no-timeoffset" # Not updated since 2019 so not gonna do an API call
 wget -q "https://github.com/ihaveamac/ctr-no-timeoffset/releases/download/v1.1/ctr-no-timeoffset.3dsx"
