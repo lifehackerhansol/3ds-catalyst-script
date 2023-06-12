@@ -57,6 +57,9 @@ wget -q "https://github.com/zoogie/b9sTool/releases/download/v6.1.1/release_6.1.
 echo "Downloading BannerBomb3"
 wget -q "https://github.com/lifehackerhansol/Bannerbomb3/releases/download/v3.0-lhs2/bb3.bin"
 
+echo "Downloading custom otherapp package"
+wget -q "https://3ds.hacks.guide/assets/otherapps.zip"
+
 #####################
 # make some folders #
 #####################
@@ -77,9 +80,10 @@ unzip -q Luma3DSv*.zip;rm Luma3DSv*.zip
 mkdir tmp;mv GodMode9*.zip tmp;cd tmp/;unzip -q *.zip;mv GodMode9.firm ..; mv -f gm9 ..;cd ..;rm -rf tmp
 unzip -q boot9strap-1.4.zip;rm boot9strap-1.4.zip
 mkdir tmp;mv SafeB9SInstaller*.zip tmp;cd tmp/;unzip -q *.zip;mv SafeB9SInstaller.bin ..;mv SafeB9SInstaller.firm ..;cd ..;rm -rf tmp
-mkdir tmp;mv RELEASE_v1.3.zip tmp;cd tmp/;unzip -q RELEASE_v1.3.zip;mv -f otherapps_with_CfgS ..;mv -f slotTool ..;mv -f usm.bin ..;cd ..;rm -rf tmp
+mkdir tmp;mv RELEASE_v1.3.zip tmp;cd tmp/;unzip -q RELEASE_v1.3.zip;mv -f slotTool ..;mv -f usm.bin ..;cd ..;rm -rf tmp
 unzip -q Frogminer_save.zip;rm Frogminer_save.zip
 mkdir tmp;mv release_6.1.1.zip tmp;cd tmp/;unzip -q *.zip;mv boot.nds ..;cd ..;rm -rf tmp
+mkdir otherapps;unzip -q otherapps.zip -d otherapps;rm otherapps.zip
 
 #########################
 # extract common things #
@@ -137,10 +141,10 @@ rm -rf ssloth
 echo "Putting pichaxx related files in correct locations"
 cp -r common/* pichaxx
 mv slotTool pichaxx/3ds/slotTool
-mv otherapps_with_CfgS pichaxx/otherapps_with_CfgS
+mv otherapps pichaxx/otherapps
 cp usm.bin pichaxx/usm.bin
 cp SafeB9SInstaller.bin pichaxx
-echo "!!! You must copy the corresponding *.bin file from the otherapps_with_CfgS folder for your console to the SD root,
+echo "!!! You must copy the corresponding *.bin file from the otherapps folder for your console to the SD root,
 and rename it to otherapp.bin.
 
 The exploit will fail without it. !!!" > pichaxx/readme.txt
