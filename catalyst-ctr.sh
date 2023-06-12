@@ -60,11 +60,14 @@ wget -q "https://github.com/lifehackerhansol/Bannerbomb3/releases/download/v3.0-
 echo "Downloading custom otherapp package"
 wget -q "https://3ds.hacks.guide/assets/otherapps.zip"
 
+echo "Downloading super-skaterhax"
+wget -q "https://github.com/zoogie/super-skaterhax/releases/download/v1.1/release_new3ds_v1.1.zip"
+
 #####################
 # make some folders #
 #####################
 echo "Creating directories for each catalyst"
-mkdir -p {soundhax,usm,pichaxx,ntrboot,ssloth,safecerthax,fredtool} # saves me the slightest bit of time later
+mkdir -p {soundhax,usm,pichaxx,ntrboot,ssloth,safecerthax,super-skaterhax,fredtool} # saves me the slightest bit of time later
 
 echo "Creating common directory"
 mkdir -p common/{3ds,cias,boot9strap,luma/payloads}
@@ -84,6 +87,7 @@ mkdir tmp;mv RELEASE_v1.3.zip tmp;cd tmp/;unzip -q RELEASE_v1.3.zip;mv -f slotTo
 unzip -q Frogminer_save.zip;rm Frogminer_save.zip
 mkdir tmp;mv release_6.1.1.zip tmp;cd tmp/;unzip -q *.zip;mv boot.nds ..;cd ..;rm -rf tmp
 mkdir otherapps;unzip -q otherapps.zip -d otherapps;rm otherapps.zip
+mkdir skaterhax-release;unzip -q release_new3ds_v1.1.zip -d skaterhax-release;rm release_new3ds_v1.1.zip
 
 #########################
 # extract common things #
@@ -153,6 +157,23 @@ zip -r pichaxx.zip *
 mv pichaxx.zip ../out
 cd ..
 rm -rf pichaxx
+
+################################
+# YABH: yet another browserhax #
+################################
+echo "Putting super-skaterhax related files in correct locations"
+cp -r common/* super-skaterhax
+mv skaterhax-release super-skaterhax/super-skaterhax
+cp usm.bin super-skaterhax/usm.bin
+cp SafeB9SInstaller.bin super-skaterhax
+echo "!!! You must all files from the folder for your console's region/version in the super-skaterhax folder to the SD root.
+
+The exploit will fail without it. !!!" > super-skaterhax/readme.txt
+cd super-skaterhax
+zip -r $PWD.zip * 
+mv $PWD.zip ../out
+cd ..
+rm -rf super-skaterhax
 
 ################################
 # unsafe mode is actually safe #
