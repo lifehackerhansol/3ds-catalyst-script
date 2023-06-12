@@ -17,10 +17,6 @@ curl -sLq https://api.github.com/repos/LumaTeam/Luma3DS/releases/latest | jq -r 
 #################
 # Homebrew apps #
 #################
-echo "Downloading FBI" # might swap this out for the fork ngl
-curl -sLq https://api.github.com/repos/Steveice10/FBI/releases/latest | jq -r '.assets[].browser_download_url' | wget -qi -
-rm -rf FBI.zip
-
 echo "Downloading Anemone"
 curl -sLq https://api.github.com/repos/astronautlevel2/Anemone3DS/releases/latest | jq -r '.assets[1].browser_download_url' | wget -qi -
 
@@ -31,37 +27,41 @@ echo "Downloading GodMode9"
 curl -sLq https://api.github.com/repos/d0k3/GodMode9/releases/latest | jq -r '.assets[].browser_download_url' | wget -qi -
 
 echo "Downloading unSAFE_MODE"
-curl -sLq https://api.github.com/repos/zoogie/unSAFE_MODE/releases/latest | jq -r '.assets[0].browser_download_url' | wget -qi -
+wget -q "https://github.com/zoogie/unSAFE_MODE/releases/download/v1.3/RELEASE_v1.3.zip"
+
+echo "Downloading FBI"
+wget -q "https://github.com/Steveice10/FBI/releases/download/2.6.1/FBI.cia"
+wget -q "https://github.com/Steveice10/FBI/releases/download/2.6.1/FBI.3dsx"
 
 echo "Downloading universal-otherapp"
-wget -q "https://github.com/TuxSH/universal-otherapp/releases/download/v1.4.0/otherapp.bin" # I do not think this is gonna get many updates, if it starts updating a lot I'll use the api
+wget -q "https://github.com/TuxSH/universal-otherapp/releases/download/v1.4.0/otherapp.bin"
 
 echo "Downloading boot9strap"
-wget -q "https://github.com/SciresM/boot9strap/releases/download/1.4/boot9strap-1.4.zip" # Same reason as above
+wget -q "https://github.com/SciresM/boot9strap/releases/download/1.4/boot9strap-1.4.zip"
 
 echo "Downloading SafeB9SInstaller"
-wget -q "https://github.com/d0k3/SafeB9SInstaller/releases/download/v0.0.7/SafeB9SInstaller-20170605-122940.zip" # Same reason as above
+wget -q "https://github.com/d0k3/SafeB9SInstaller/releases/download/v0.0.7/SafeB9SInstaller-20170605-122940.zip"
 
-echo "Downloading Homebrew Launcher Wrapper" # is this just a blank cia to use as a forwarder?
-wget -q "https://github.com/PabloMK7/homebrew_launcher_dummy/releases/download/v1.0/Homebrew_Launcher.cia" # Same reason as above
+echo "Downloading Homebrew Launcher Wrapper"
+wget -q "https://github.com/PabloMK7/homebrew_launcher_dummy/releases/download/v1.0/Homebrew_Launcher.cia"
 
 echo "Downloading Checkpoint"
-wget -q "https://github.com/FlagBrew/Checkpoint/releases/download/v3.7.4/Checkpoint.cia" # Using older release for now as newer one broke:tm:
+wget -q "https://github.com/FlagBrew/Checkpoint/releases/download/v3.7.4/Checkpoint.cia"
 
 echo "Downloading frogminer_save"
-wget -q "https://github.com/zoogie/Frogminer/releases/download/v1.0/Frogminer_save.zip" # same reason as above
+wget -q "https://github.com/zoogie/Frogminer/releases/download/v1.0/Frogminer_save.zip"
 
 echo "Downloading b9sTool"
-wget -q "https://github.com/zoogie/b9sTool/releases/download/v6.1.1/release_6.1.1.zip" # same reason as above
+wget -q "https://github.com/zoogie/b9sTool/releases/download/v6.1.1/release_6.1.1.zip"
 
 echo "Downloading BannerBomb3"
-wget -q "https://github.com/lifehackerhansol/Bannerbomb3/releases/download/v3.0-lhs2/bb3.bin" # reading comprehension edition
+wget -q "https://github.com/lifehackerhansol/Bannerbomb3/releases/download/v3.0-lhs2/bb3.bin"
 
 #####################
 # make some folders #
 #####################
 echo "Creating directories for each catalyst"
-mkdir -p {soundhax,usm,pichaxx,ntrboot,ssloth,fredtool} # saves me the slightest bit of time later
+mkdir -p {soundhax,usm,pichaxx,ntrboot,ssloth,safecerthax,fredtool} # saves me the slightest bit of time later
 
 echo "Creating common directory"
 mkdir -p common/{3ds,cias,boot9strap,luma/payloads}
@@ -105,6 +105,18 @@ zip -r soundhax.zip *
 mv soundhax.zip ../out
 cd ..
 rm -rf soundhax
+
+###############
+# safecerthax #
+###############
+echo "Putting safecerthax related files in correct locations"
+cp -r common/* safecerthax
+cp SafeB9SInstaller.bin safecerthax
+cd safecerthax
+zip -r $PWD.zip * 
+mv $PWD.zip ../out
+cd ..
+rm -rf safecerthax
 
 ##############################
 # browserhax just won't die #
