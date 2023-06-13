@@ -17,9 +17,6 @@ curl -sLq https://api.github.com/repos/LumaTeam/Luma3DS/releases/latest | jq -r 
 #################
 # Homebrew apps #
 #################
-echo "Downloading Anemone"
-curl -sLq https://api.github.com/repos/astronautlevel2/Anemone3DS/releases/latest | jq -r '.assets[1].browser_download_url' | wget -qi -
-
 echo "Downloading Universal Updater"
 curl -sLq https://api.github.com/repos/Universal-Team/Universal-Updater/releases/latest | jq -r '.assets[1].browser_download_url' | wget -qi -
 
@@ -28,6 +25,9 @@ curl -sLq https://api.github.com/repos/d0k3/GodMode9/releases/latest | jq -r '.a
 
 echo "Downloading unSAFE_MODE"
 wget -q "https://github.com/zoogie/unSAFE_MODE/releases/download/v1.3/RELEASE_v1.3.zip"
+
+echo "Downloading Anemone"
+wget -q "https://github.com/astronautlevel2/Anemone3DS/releases/download/v2.3.1/Anemone3DS.cia"
 
 echo "Downloading FBI"
 wget -q "https://github.com/Steveice10/FBI/releases/download/2.6.1/FBI.cia"
@@ -69,6 +69,9 @@ wget -q "https://github.com/zoogie/super-skaterhax/releases/download/v1.1/releas
 echo "Downloading frogtool"
 wget -q "https://github.com/zoogie/Frogtool/releases/download/v2.3/Frogtool_v2.3.zip"
 
+echo "Downloading nimhax"
+wget -q "https://github.com/luigoalma/nimhax/releases/download/v1.0.2/nimhax_v1.0.2.zip"
+
 #####################
 # make some folders #
 #####################
@@ -96,6 +99,7 @@ mkdir otherapps;unzip -q otherapps.zip -d otherapps;rm otherapps.zip
 mkdir skaterhax-release;unzip -q release_new3ds_v1.1.zip -d skaterhax-release;rm release_new3ds_v1.1.zip
 mkdir steelhax-release;unzip -q steelhax-release.zip -d steelhax-release;rm steelhax-release/*.txt;rm steelhax-release.zip
 unzip -q Frogtool_v2.3.zip;rm *.txt;rm Frogtool_v2.3.zip
+unzip -q nimhax_v1.0.2.zip;rm nimhax_v1.0.2.zip
 
 #########################
 # extract common things #
@@ -195,6 +199,7 @@ echo "Putting super-skaterhax related files in correct locations"
 cp -r common/* super-skaterhax
 mv skaterhax-release super-skaterhax/super-skaterhax
 mv Frogtool.3dsx super-skaterhax/3ds/
+mv nimhax super-skaterhax/3ds/
 cp usm.bin super-skaterhax/usm.bin
 cp SafeB9SInstaller.bin super-skaterhax
 echo "!!! You must all files from the folder for your console's region/version in the super-skaterhax folder to the SD root.
