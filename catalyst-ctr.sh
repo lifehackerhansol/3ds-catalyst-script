@@ -60,6 +60,9 @@ wget -q "https://github.com/lifehackerhansol/Bannerbomb3/releases/download/v3.0-
 echo "Downloading custom otherapp package"
 wget -q "https://3ds.hacks.guide/assets/otherapps.zip"
 
+echo "Downloading steelhax"
+wget -q "https://3ds.hacks.guide/assets/steelhax-release.zip"
+
 echo "Downloading super-skaterhax"
 wget -q "https://github.com/zoogie/super-skaterhax/releases/download/v1.1/release_new3ds_v1.1.zip"
 
@@ -67,7 +70,7 @@ wget -q "https://github.com/zoogie/super-skaterhax/releases/download/v1.1/releas
 # make some folders #
 #####################
 echo "Creating directories for each catalyst"
-mkdir -p {soundhax,usm,pichaxx,ntrboot,ssloth,safecerthax,super-skaterhax,fredtool} # saves me the slightest bit of time later
+mkdir -p {soundhax,usm,pichaxx,ntrboot,ssloth,safecerthax,super-skaterhax,steelhax,fredtool} # saves me the slightest bit of time later
 
 echo "Creating common directory"
 mkdir -p common/{3ds,cias,boot9strap,luma/payloads}
@@ -88,6 +91,7 @@ unzip -q Frogminer_save.zip;rm Frogminer_save.zip
 mkdir tmp;mv release_6.1.1.zip tmp;cd tmp/;unzip -q *.zip;mv boot.nds ..;cd ..;rm -rf tmp
 mkdir otherapps;unzip -q otherapps.zip -d otherapps;rm otherapps.zip
 mkdir skaterhax-release;unzip -q release_new3ds_v1.1.zip -d skaterhax-release;rm release_new3ds_v1.1.zip
+mkdir steelhax-release;unzip -q steelhax-release.zip -d steelhax-release;rm steelhax-release/*.txt;rm steelhax-release.zip
 
 #########################
 # extract common things #
@@ -144,8 +148,8 @@ rm -rf ssloth
 ####################
 echo "Putting pichaxx related files in correct locations"
 cp -r common/* pichaxx
-mv slotTool pichaxx/3ds/slotTool
-mv otherapps pichaxx/otherapps
+cp -r slotTool pichaxx/3ds/slotTool
+cp -r otherapps pichaxx/otherapps
 cp usm.bin pichaxx/usm.bin
 cp SafeB9SInstaller.bin pichaxx
 echo "!!! You must copy the corresponding *.bin file from the otherapps folder for your console to the SD root,
@@ -157,6 +161,26 @@ zip -r pichaxx.zip *
 mv pichaxx.zip ../out
 cd ..
 rm -rf pichaxx
+
+############
+# steelhax #
+############
+echo "Putting steelhax related files in correct locations"
+cp -r common/* steelhax
+mv slotTool steelhax/3ds/slotTool
+mv otherapps steelhax/otherapps
+cp usm.bin steelhax/usm.bin
+cp SafeB9SInstaller.bin steelhax
+mv steelhax-release steelhax/steelhax
+echo "!!! You must copy the corresponding *.bin file from the otherapps folder for your console to the SD root,
+and rename it to otherapp.bin.
+
+The exploit will fail without it. !!!" > steelhax/readme.txt
+cd steelhax
+zip -r $PWD.zip * 
+mv $PWD.zip ../out
+cd ..
+rm -rf steelhax
 
 ################################
 # YABH: yet another browserhax #
